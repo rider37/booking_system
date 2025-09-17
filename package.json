@@ -3,10 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://rider37.github.io/booking_system",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build:pages": "BASE_PATH=/${npm_package_name}/ npm run build && cp dist/index.html dist/404.html",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "devDependencies": {
     "@types/react": "^19.1.13",
