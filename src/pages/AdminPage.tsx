@@ -67,34 +67,42 @@ export const AdminPage: React.FC = () => {
   if (loading) return <p>불러오는 중...</p>
 
   return (
-    <div style={{ display: 'grid', gap: 12 }}>
-      <div style={{ display: 'flex', gap: 8 }}>
+    <div className="admin-section">
+      <div className="admin-toolbar">
         <button onClick={fetchAll}>새로고침</button>
-        <button onClick={resetAll} style={{ background: '#e74c3c', color: 'white' }}>초기화</button>
+        <button onClick={resetAll} className="danger">초기화</button>
       </div>
-      {error && <p style={{ color: 'crimson' }}>{error}</p>}
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr>
-            <th style={{ textAlign: 'left', borderBottom: '1px solid #ccc', padding: 8 }}>이름</th>
-            <th style={{ textAlign: 'left', borderBottom: '1px solid #ccc', padding: 8 }}>전화번호</th>
-            <th style={{ textAlign: 'left', borderBottom: '1px solid #ccc', padding: 8 }}>좌석</th>
-            <th style={{ textAlign: 'left', borderBottom: '1px solid #ccc', padding: 8 }}>액션</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.booking_id}>
-              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{r.name}</td>
-              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{r.phone}</td>
-              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{r.seats.join(', ')}</td>
-              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>
-                <button onClick={() => cancelBooking(r.booking_id)}>취소</button>
-              </td>
+      {error && <p className="error">{error}</p>}
+      <div className="admin-table-wrap">
+        <table className="admin-table">
+          <colgroup>
+            <col style={{ width: 140 }} />
+            <col style={{ width: 160 }} />
+            <col />
+            <col style={{ width: 120 }} />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>전화번호</th>
+              <th>좌석</th>
+              <th>액션</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.booking_id}>
+                <td>{r.name}</td>
+                <td>{r.phone}</td>
+                <td className="mono">{r.seats.join(', ')}</td>
+                <td>
+                  <button onClick={() => cancelBooking(r.booking_id)}>취소</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

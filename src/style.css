@@ -75,7 +75,7 @@ body {
   padding: 12px 12px 88px; /* bottom space for bottom-bar */
 }
 .container.admin {
-  max-width: 960px;
+  max-width: 1280px;
   padding-bottom: 24px;
 }
 
@@ -146,7 +146,7 @@ body {
   place-items: center;
 }
 .home-overlay { display: grid; place-items: center; gap: 24px; text-align: center; padding: 24px; }
-.home-title { font-size: 28px; font-weight: 900; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+.home-title { font-size: 28px; font-weight: 900; text-shadow: 0 2px 8px rgba(0,0,0,.5); color: #ffffff; }
 @media (min-width: 480px) { .home-title { font-size: 36px; } }
 .home-actions { display: grid; gap: 12px; width: min(480px, 90vw); }
 
@@ -207,6 +207,16 @@ body {
 .aisle { grid-column: span 1; }
 .seat-row > .aisle:nth-child(9),
 .seat-row > .aisle:nth-child(10) { grid-column: span 1; }
+
+/* Admin */
+.admin-section { display: grid; gap: 16px; }
+.admin-toolbar { display: flex; gap: 8px; position: sticky; top: 0; background: var(--bg); padding-top: 8px; z-index: 1; }
+.admin-toolbar .danger { background: #e74c3c; color: #fff; border-color: #e74c3c; }
+.admin-table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: 10px; }
+.admin-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.admin-table th, .admin-table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.admin-table thead th { position: sticky; top: 0; background: var(--card); z-index: 2; }
+.admin-table .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
 
 .logo {
   height: 6em;
