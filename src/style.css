@@ -184,20 +184,7 @@ body {
 .aisle { display: flex; align-items: center; justify-content: center; }
 .aisle-label { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--muted); font-size: 12px; }
 .stage { grid-column: 1 / -1; margin-top: 10px; text-align: center; color: #fff; background: #444; border-radius: 8px; padding: 12px 0; font-weight: 700; }
-.seat {
-  aspect-ratio: 1 / 1;
-  width: 100%;
-  background: #ffffff;
-  color: var(--text);
-  border: 2px solid #d1d5db;
-  border-radius: 12px;
-  font-weight: 600;
-  padding: 0 !important; /* 전역 button 패딩 무시 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
+.seat { aspect-ratio: 1 / 1; background: #ffffff; color: var(--text); border: 2px solid #d1d5db; border-radius: 12px; font-weight: 600; width: 100%; }
 .seat.selected {
   background: #7dd3fc; /* 하늘색 */
   border-color: #7dd3fc;
