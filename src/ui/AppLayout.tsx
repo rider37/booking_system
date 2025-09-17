@@ -4,6 +4,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom'
 export const AppLayout: React.FC = () => {
   const location = useLocation()
   const isAdmin = location.pathname.startsWith('/admin')
+  const isHome = location.pathname === '/' || location.pathname === ''
   return (
     <div className={isAdmin ? 'container admin' : 'container'}>
       <header className={isAdmin ? 'app-header admin' : 'app-header public'}>
@@ -16,7 +17,7 @@ export const AppLayout: React.FC = () => {
               <Link to="/admin">관리자</Link>
             </nav>
           </>
-        ) : (
+        ) : isHome ? null : (
           <div className="app-title">2025 극단 봄 정기공연, Way Down</div>
         )}
       </header>

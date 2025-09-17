@@ -139,12 +139,16 @@ body {
 /* Bottom bar */
 .home-hero {
   position: relative;
-  min-height: calc(100dvh - 120px);
-  background: url('/booking_system/hero.jpg') center/cover no-repeat;
+  min-height: 100dvh;
+  width: 100vw;
+  background: url('/booking_system/hero.jpg') center/cover no-repeat fixed;
   display: grid;
-  align-items: end;
+  place-items: center;
 }
-.home-actions { display: grid; gap: 12px; padding: 24px; }
+.home-overlay { display: grid; place-items: center; gap: 24px; text-align: center; padding: 24px; }
+.home-title { font-size: 28px; font-weight: 900; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+@media (min-width: 480px) { .home-title { font-size: 36px; } }
+.home-actions { display: grid; gap: 12px; width: min(480px, 90vw); }
 
 /* 좌석 스크롤 래퍼: 모바일에서 가로폭에 맞춰 균일 배치 */
 .seat-scroll { overflow-x: auto; }
@@ -174,24 +178,13 @@ body {
 }
 
 /* Seat grid */
-.seat-grid {
-  display: grid;
-  gap: 12px;
-}
+.seat-grid { display: grid; gap: 12px; }
 .seat-row { display: grid; grid-template-columns: repeat(18, 1fr); gap: 8px; }
 .seat-row.top { grid-template-columns: repeat(18, 1fr); }
 .aisle { display: flex; align-items: center; justify-content: center; }
 .aisle-label { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--muted); font-size: 12px; }
-.stage { grid-column: 1 / -1; margin-top: 10px; text-align: center; color: var(--muted); border-top: 2px solid var(--border); padding-top: 8px; }
-.seat {
-  aspect-ratio: 1 / 1;
-  background: #ffffff;
-  color: var(--text);
-  border: 2px solid #d1d5db; /* 회색 테두리 */
-  border-radius: 12px; /* 둥근 모서리 정사각형 */
-  font-weight: 600;
-  width: 100%;
-}
+.stage { grid-column: 1 / -1; margin-top: 10px; text-align: center; color: #fff; background: #444; border-radius: 8px; padding: 12px 0; font-weight: 700; }
+.seat { aspect-ratio: 1 / 1; background: #ffffff; color: var(--text); border: 2px solid #d1d5db; border-radius: 12px; font-weight: 600; width: 100%; }
 .seat.selected {
   background: #7dd3fc; /* 하늘색 */
   border-color: #7dd3fc;
