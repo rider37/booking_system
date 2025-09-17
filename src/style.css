@@ -87,7 +87,8 @@ body {
   margin-bottom: 16px;
 }
 .app-header.public { justify-content: center; }
-.app-title { font-weight: 800; font-size: 18px; text-align: center; }
+.app-title { font-weight: 900; font-size: 22px; text-align: center; }
+@media (min-width: 480px) { .app-title { font-size: 26px; } }
 .app-header .brand {
   text-decoration: none;
   color: inherit;
@@ -144,6 +145,18 @@ body {
   align-items: end;
 }
 .home-actions { display: grid; gap: 12px; padding: 24px; }
+
+/* 좌석 스크롤 래퍼: 모바일에서 가로폭에 맞춰 균일 배치 */
+.seat-scroll { overflow-x: auto; }
+.seat-grid { width: 100%; max-width: 100%; }
+.seat-row { grid-template-columns: repeat(18, minmax(0, 1fr)); }
+.seat { width: 100%; }
+
+@media (max-width: 480px) {
+  .container { padding-left: 8px; padding-right: 8px; }
+  .seat-row { gap: 6px; }
+  .seat { border-radius: 10px; }
+}
 .bottom-bar {
   position: fixed;
   left: 0; right: 0; bottom: 0;

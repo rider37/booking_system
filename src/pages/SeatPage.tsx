@@ -97,7 +97,7 @@ export const SeatPage: React.FC = () => {
 
   return (
     <div className="page-content with-bottom">
-      <div className="seat-grid">
+      <div className="seat-scroll"><div className="seat-grid">
         {/* 상단 1~18 연속 줄 */}
         <div className="seat-row top">
           {Array.from({ length: 18 }).map((_, cIdx) => {
@@ -148,7 +148,7 @@ export const SeatPage: React.FC = () => {
           </div>
         ))}
         <div className="stage">무대</div>
-      </div>
+      </div></div>
       <BottomBar
         left={<Link to="/"><button className="btn">돌아가기</button></Link>}
         right={<button className="btn primary" onClick={handleNext} disabled={selected.size === 0}>다음</button>}
