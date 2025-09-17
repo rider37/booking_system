@@ -132,11 +132,13 @@ export const SeatPage: React.FC = () => {
               const rowFromBottom = (NUM_ROWS - rIdx - 1)
               const displayNumber = rowFromBottom * 8 + seatIndexInSide
               const sideClass = isLeft ? 'left' : 'right'
+              // 저장용 라벨: 좌측(나-1~48), 우측(가-1~48), 상단(다-1~18)
+              const saveLabel = isLeft ? `나-${displayNumber}` : `가-${displayNumber}`
               return (
                 <button
                   key={seat.id}
                   disabled={seat.reserved}
-                  onClick={() => toggle(seat)}
+                  onClick={() => toggle({ ...seat, label: saveLabel } as any)}
                   className={'seat ' + sideClass + ' ' + (seat.reserved ? 'disabled' : selected.has(seat.id) ? 'selected' : '')}
                 >
                   {displayNumber}

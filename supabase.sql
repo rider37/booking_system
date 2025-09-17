@@ -65,4 +65,20 @@ select 0 as row, c, concat('0-', c::text)
 from generate_series(1, 18) c
 on conflict (label) do nothing;
 
+-- 표시 라벨을 요구사항에 맞게 재지정: 가/나/다 체계
+-- 상단: 다-1..18 (좌->우 1..18이 아니라, 현재 UI는 우->좌 1..18이므로 표시는 UI에서 처리)
+update public.seats s
+set label = concat('다-', (19 - s.col))
+where s.row = 0;
+
+-- 본 그리드 왼쪽(1..8열): 나-1..48 (아래에서 위로 8씩 증가, 열은 오->왼 1..8)
+update public.seats s
+set label = concat('나-', ((7 - s.row) * 8 + (9 - s.col)))
+where s.row between 1 and 6 and s.col between 1 and 8;
+
+-- 본 그리드 오른쪽(10..17열): 가-1..48 (아래에서 위로 8씩 증가, 열은 왼->오 1..8)
+update public.seats s
+set label = concat('가-', ((7 - s.row) * 8 + (s.col - 9)))
+where s.row between 1 and 6 and s.col between 10 and 17;
+
 -- 상단 연속 줄(1..18)은 row=0, col=1..18로 이미 포함됩니다.

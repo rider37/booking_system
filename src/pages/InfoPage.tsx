@@ -28,7 +28,7 @@ export const InfoPage: React.FC = () => {
     // 예약 트랜잭션: 좌석 예약 상태 확인 및 예약 생성
     const { data: seats, error: seatErr } = await supabase
       .from('seats')
-      .select('id, reserved')
+      .select('id, reserved, row, col')
       .in('id', draft.selectedSeatIds)
 
     if (seatErr) {
@@ -55,7 +55,11 @@ export const InfoPage: React.FC = () => {
       return
     }
 
-    const seatLinks = draft.selectedSeatIds.map((seatId) => ({ booking_id: booking.id as string, seat_id: seatId }))
+    const seatLinks = (seats ?? []).map((s: any) => ({
+      booking_id: booking.id as string,
+      seat_id: s.id as string,
+      // 저장용 표시 라벨(선택적으로 별도 컬럼이 필요하지만, 여기서는 booking_seats에 upsert 시 확장 컬럼을 가정하려 했으나 스키마상 없음)
+    }))
     const { error: linkErr } = await supabase.from('booking_seats').insert(seatLinks)
     if (linkErr) {
       setError('좌석 연결 중 오류가 발생했습니다.')

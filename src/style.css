@@ -86,6 +86,8 @@ body {
   gap: 8px;
   margin-bottom: 16px;
 }
+.app-header.public { justify-content: center; }
+.app-title { font-weight: 800; font-size: 18px; text-align: center; }
 .app-header .brand {
   text-decoration: none;
   color: inherit;
@@ -134,6 +136,14 @@ body {
 .list { margin: 0; padding-left: 16px; }
 
 /* Bottom bar */
+.home-hero {
+  position: relative;
+  min-height: calc(100dvh - 120px);
+  background: url('/booking_system/hero.jpg') center/cover no-repeat;
+  display: grid;
+  align-items: end;
+}
+.home-actions { display: grid; gap: 12px; padding: 24px; }
 .bottom-bar {
   position: fixed;
   left: 0; right: 0; bottom: 0;
