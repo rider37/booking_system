@@ -24,11 +24,18 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      - name: Set BASE_PATH for GitHub Pages
+        run: |
+          if [ "${{ github.event.repository.name }}" = "${{ github.repository_owner }}.github.io" ]; then
+            echo "BASE_PATH=/" >> $GITHUB_ENV
+          else
+            echo "BASE_PATH=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
+          fi
+
       - name: Build
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          BASE_PATH: /${{ github.event.repository.name }}/
         run: |
           npm run build
           cp dist/index.html dist/404.html
