@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       { path: 'admin', element: <AdminPage /> }
     ]
   }
-])
+], { basename: import.meta.env.BASE_URL })
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
