@@ -33,7 +33,7 @@ export const LookupPage: React.FC = () => {
 
     const { data: rows, error: joinErr } = await supabase
       .from('booking_seats')
-      .select('seat:seat_id(label)')
+      .select('seat:seat_id(row, col)')
       .eq('booking_id', booking.id)
 
     if (joinErr) {
@@ -42,7 +42,16 @@ export const LookupPage: React.FC = () => {
       return
     }
 
-    const labels = (rows ?? []).map((r: any) => r.seat.label as string)
+    const labels = (rows ?? []).map((r: any) => {
+      const s = r.seat as any
+      // 동일 로직으로 가/나/다 라벨 재계산 표시
+      if (s.row === 0) return `다-${19 - s.col}`
+      const isLeft = s.col <= 8
+      const seatIndexInSide = isLeft ? (9 - s.col) : (s.col - 9)
+      const number = (6 - s.row) * 8 + seatIndexInSide
+      const prefix = isLeft ? '나' : '가'
+      return `${prefix}-${number}`
+    })
     setResult(labels)
     setLoading(false)
   }

@@ -132,8 +132,8 @@ export const SeatPage: React.FC = () => {
               const seatIndexInSide = isLeft
                 ? (AISLE_START_COL - 1 - cIdx)
                 : (cIdx - (AISLE_START_COL + AISLE_SPAN) + 2)
-              const rowFromBottom = (NUM_ROWS - rIdx - 1)
-              const displayNumber = rowFromBottom * 8 + seatIndexInSide
+              const rowFromBottom = (NUM_ROWS - rIdx)
+              const displayNumber = (rowFromBottom - 1) * 8 + seatIndexInSide
               const sideClass = isLeft ? 'left' : 'right'
               // 저장용 라벨: 좌측(나-1~48), 우측(가-1~48), 상단(다-1~18)
               const saveLabel = isLeft ? `나-${displayNumber}` : `가-${displayNumber}`
