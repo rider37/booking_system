@@ -185,7 +185,7 @@ body {
 .aisle { display: flex; align-items: center; justify-content: center; }
 .aisle-label { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--muted); font-size: 12px; }
 .stage { grid-column: 1 / -1; margin-top: 10px; text-align: center; color: #fff; background: #444; border-radius: 8px; padding: 12px 0; font-weight: 700; }
-.seat { aspect-ratio: 1 / 1; background: #ffffff; color: var(--text); border: 2px solid #d1d5db; border-radius: 12px; font-weight: 600; width: 100%; }
+.seat { aspect-ratio: 1 / 1; background: #ffffff; color: var(--text); border: 2px solid #d1d5db; border-radius: 12px; font-weight: 600; width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; }
 .seat.selected {
   background: #7dd3fc; /* 하늘색 */
   border-color: #7dd3fc;
@@ -219,7 +219,8 @@ body {
     padding-left: var(--container-pad);
     padding-right: var(--container-pad);
   }
-  .seat-grid { width: calc(18 * var(--seat-size) + 17 * var(--seat-gap)); }
+  /* 전체 너비 = 좌석 * 18 + gap * 17 + 안전여백 1px (잘림 방지) */
+  .seat-grid { width: calc(18 * var(--seat-size) + 17 * var(--seat-gap) + 1px); }
   .seat-row { grid-template-columns: repeat(18, var(--seat-size)); gap: var(--seat-gap); width: 100%; }
   .seat-row.top { grid-template-columns: repeat(18, var(--seat-size)); width: 100%; }
   .seat { width: var(--seat-size); height: var(--seat-size); aspect-ratio: auto; }
