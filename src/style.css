@@ -185,6 +185,8 @@ body {
 .aisle { display: flex; align-items: center; justify-content: center; }
 .aisle-label { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--muted); font-size: 12px; }
 .stage { grid-column: 1 / -1; margin-top: 10px; text-align: center; color: #fff; background: #444; border-radius: 8px; padding: 12px 0; font-weight: 700; }
+.seat-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+.seat-scroll::-webkit-scrollbar { display: none; }
 .seat { aspect-ratio: 1 / 1; background: #ffffff; color: var(--text); border: 2px solid #d1d5db; border-radius: 12px !important; font-weight: 600; width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; }
 .seat.selected {
   background: #7dd3fc; /* 하늘색 */
@@ -212,14 +214,9 @@ body {
 /* 모바일: 좌석 고정 크기 + 가로 스크롤 */
 @media (max-width: 600px) {
   :root { --seat-size: 52px; --seat-gap: 8px; }
-  .seat-scroll {
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
-    margin-left: calc(-1 * var(--container-pad));
-    margin-right: calc(-1 * var(--container-pad));
-    padding-left: var(--container-pad);
-    /* 오른쪽 끝 좌석 잘림 방지 여유 패딩 */
-    padding-right: calc(var(--container-pad) + var(--seat-gap) * 2);
-  }
+  /* 페이지 자체가 가로 스크롤을 담당하도록: 내부 스크롤 제거 */
+  .container { max-width: none; }
+  .seat-scroll { overflow: visible; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
   /* 전체 너비 = 좌석 * 18 + gap * 17 + 우측 여유 */
   .seat-grid { width: calc(18 * var(--seat-size) + 17 * var(--seat-gap) + var(--seat-gap) * 2); }
   .seat-row { grid-template-columns: repeat(18, var(--seat-size)); gap: var(--seat-gap); width: 100%; }

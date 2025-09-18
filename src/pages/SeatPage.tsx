@@ -129,7 +129,9 @@ export const SeatPage: React.FC = () => {
               }
               // 표시용 번호: 좌측은 오->왼 1..8, 우측은 왼->오 1..8
               const isLeft = cIdx + 1 < AISLE_START_COL
-              const seatIndexInSide = isLeft ? (AISLE_START_COL - 1 - cIdx) : (cIdx - (AISLE_START_COL + AISLE_SPAN) + 1)
+              const seatIndexInSide = isLeft
+                ? (AISLE_START_COL - 1 - cIdx)
+                : (cIdx - (AISLE_START_COL + AISLE_SPAN) + 2)
               const rowFromBottom = (NUM_ROWS - rIdx - 1)
               const displayNumber = rowFromBottom * 8 + seatIndexInSide
               const sideClass = isLeft ? 'left' : 'right'
