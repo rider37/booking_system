@@ -65,10 +65,11 @@ export const SeatPage: React.FC = () => {
     const byPos: Record<string, SeatRecord> = {}
     for (const s of seats) byPos[`${s.row}-${s.col}`] = s
     const uiToDbCol = (uiCol: number): number | null => {
-      // uiCol: 1..18, 가운데 통로는 9~10
+      // uiCol: 1..18, 가운데 통로는 9~10 (UI는 두 칸, DB는 9 한 칸만 비어있음)
       if (uiCol >= AISLE_START_COL && uiCol < AISLE_START_COL + AISLE_SPAN) return null
       if (uiCol <= AISLE_START_COL - 1) return uiCol
-      return uiCol - AISLE_SPAN
+      // 오른쪽은 UI 기준으로 1칸만 압축하여 DB 컬럼 매핑
+      return uiCol - (AISLE_SPAN - 1)
     }
     return Array.from({ length: NUM_ROWS }).map((_, r) =>
       Array.from({ length: NUM_COLS }).map((__, c) => {

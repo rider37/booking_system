@@ -211,7 +211,7 @@ body {
 
 /* 모바일: 좌석 고정 크기 + 가로 스크롤 */
 @media (max-width: 600px) {
-  :root { --seat-size: 44px; --seat-gap: 6px; }
+  :root { --seat-size: 52px; --seat-gap: 8px; }
   .seat-scroll {
     overflow-x: auto; -webkit-overflow-scrolling: touch;
     margin-left: calc(-1 * var(--container-pad));
