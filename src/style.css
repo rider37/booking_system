@@ -72,6 +72,7 @@ body {
 .container {
   max-width: 640px;
   margin: 0 auto;
+  --container-pad: 12px;
   padding: 12px 12px 88px; /* bottom space for bottom-bar */
 }
 .container.admin {
@@ -211,17 +212,16 @@ body {
 /* 모바일: 좌석 고정 크기 + 가로 스크롤 */
 @media (max-width: 600px) {
   :root { --seat-size: 44px; --seat-gap: 6px; }
-  .seat-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .seat-grid { width: max-content; }
-  .seat-row {
-    grid-template-columns: repeat(18, var(--seat-size));
-    gap: var(--seat-gap);
-    width: calc(18 * var(--seat-size) + 17 * var(--seat-gap));
+  .seat-scroll {
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    margin-left: calc(-1 * var(--container-pad));
+    margin-right: calc(-1 * var(--container-pad));
+    padding-left: var(--container-pad);
+    padding-right: var(--container-pad);
   }
-  .seat-row.top {
-    grid-template-columns: repeat(18, var(--seat-size));
-    width: calc(18 * var(--seat-size) + 17 * var(--seat-gap));
-  }
+  .seat-grid { width: calc(18 * var(--seat-size) + 17 * var(--seat-gap)); }
+  .seat-row { grid-template-columns: repeat(18, var(--seat-size)); gap: var(--seat-gap); width: 100%; }
+  .seat-row.top { grid-template-columns: repeat(18, var(--seat-size)); width: 100%; }
   .seat { width: var(--seat-size); height: var(--seat-size); aspect-ratio: auto; }
 }
 
