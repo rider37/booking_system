@@ -208,6 +208,16 @@ body {
 .seat-row > .aisle:nth-child(9),
 .seat-row > .aisle:nth-child(10) { grid-column: span 1; }
 
+/* 모바일: 좌석 고정 크기 + 가로 스크롤 */
+@media (max-width: 600px) {
+  :root { --seat-size: 44px; }
+  .seat-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .seat-grid { width: max-content; }
+  .seat-row { grid-template-columns: repeat(18, var(--seat-size)); gap: 6px; }
+  .seat-row.top { grid-template-columns: repeat(18, var(--seat-size)); }
+  .seat { width: var(--seat-size); height: var(--seat-size); aspect-ratio: auto; }
+}
+
 /* Admin */
 .admin-section { display: grid; gap: 16px; }
 .admin-toolbar { display: flex; gap: 8px; position: sticky; top: 0; background: var(--bg); padding-top: 8px; z-index: 1; }
