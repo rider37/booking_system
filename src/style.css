@@ -147,7 +147,7 @@ body {
   place-items: center;
 }
 .home-overlay { display: grid; place-items: center; gap: 24px; text-align: center; padding: 24px; }
-.home-title { font-size: 28px; font-weight: 900; text-shadow: 0 2px 8px rgba(0,0,0,.5); color: #ffffff; }
+.home-title { font-size: 36px; font-weight: 900; text-shadow: 0 2px 8px rgba(0,0,0,.5); color: #ffffff; }
 @media (min-width: 480px) { .home-title { font-size: 36px; } }
 .home-actions { display: grid; gap: 12px; width: min(480px, 90vw); }
 

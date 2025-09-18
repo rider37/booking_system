@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
+import { formatSeatLabel } from '../lib/seatLabel'
 
 type AdminRow = {
   booking_id: string
@@ -27,13 +28,17 @@ export const AdminPage: React.FC = () => {
     for (const b of bookings ?? []) {
       const { data: seatRows } = await supabase
         .from('booking_seats')
-        .select('seat:seat_id(label)')
+        .select('seat:seat_id(row, col)')
         .eq('booking_id', b.id)
+      const labels = (seatRows ?? []).map((r: any) => {
+        const s = r.seat as { row: number; col: number }
+        return formatSeatLabel(s.row, s.col)
+      })
       results.push({
         booking_id: b.id,
         name: b.name,
         phone: b.phone,
-        seats: (seatRows ?? []).map((r: any) => r.seat.label as string)
+        seats: labels
       })
     }
     setRows(results)
